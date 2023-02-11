@@ -1,0 +1,11 @@
+Pandas is not actually "in" Apache Spark, but Pandas and Spark can be used together. 
+Spark provides a Python API called PySpark, which allows you to write Spark applications using Python and run them in a distributed environment.
+One of the ways to use Pandas and Spark together is to use Pandas to pre-process and clean your data, and then use Spark to process large amounts of data in a distributed manner. 
+You can convert the pre-processed Pandas dataframe into a Spark dataframe and leverage the distributed processing capabilities of Spark to analyze and manipulate the data.
+
+For example, you can start by reading data into a Pandas dataframe using Pandas' built-in read functions, such as read_csv(). 
+You can then clean and pre-process the data using Pandas' powerful data manipulation and cleaning capabilities. 
+Once the data is ready, you can convert the Pandas dataframe into a Spark dataframe and run Spark operations on it. 
+Finally, you can convert the processed Spark dataframe back into a Pandas dataframe for further analysis or visualization.
+
+In this way, Pandas can be used in combination with Spark to tackle complex data analysis tasks that require both the power of distributed processing and the ease of use of Pandas.
