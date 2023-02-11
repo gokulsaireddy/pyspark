@@ -1,3 +1,4 @@
+# Pandas
 Pandas is not actually "in" Apache Spark, but Pandas and Spark can be used together. 
 Spark provides a Python API called PySpark, which allows you to write Spark applications using Python and run them in a distributed environment.
 One of the ways to use Pandas and Spark together is to use Pandas to pre-process and clean your data, and then use Spark to process large amounts of data in a distributed manner. 
@@ -9,3 +10,11 @@ Once the data is ready, you can convert the Pandas dataframe into a Spark datafr
 Finally, you can convert the processed Spark dataframe back into a Pandas dataframe for further analysis or visualization.
 
 In this way, Pandas can be used in combination with Spark to tackle complex data analysis tasks that require both the power of distributed processing and the ease of use of Pandas.
+
+
+# Hadoop
+
+- Compute system (MapReduce) and storage system (HDFS) are tighly coupled.
+- But spark works also with public clouds ( loosely coupled ).
+- Spark can do it in RAM, Hadoop has to read and write to disk.
+- Spark costly, Hadoop cheap.
