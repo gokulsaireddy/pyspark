@@ -10,5 +10,6 @@ Learning PySpark
 
 # Important
 
+- Pandas Fundamentals [link](Pandas.ipynb)
 - Pandas with Pyspark
 - Spark Fundamentals
