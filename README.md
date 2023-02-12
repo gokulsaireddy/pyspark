@@ -13,3 +13,4 @@ Learning PySpark
 - Pandas Fundamentals [link](Pandas.ipynb)
 - Pandas with Pyspark
 - Spark Fundamentals
+- Spark Persistence [link](https://spark.apache.org/docs/0.9.0/scala-programming-guide.html#resilient-distributed-datasets-rdds)
