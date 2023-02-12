@@ -1,4 +1,16 @@
  Resilient distributed dataset (RDD), which is a fault-tolerant collection of elements that can be operated on in parallel. 
+ 
+Yes, in Apache Spark, an RDD is distributed across multiple nodes in a cluster, allowing the processing to be performed in parallel across the nodes. 
+This is the core idea behind Spark's ability to handle big data processing efficiently.
+
+When you create an RDD in Spark, the data is split into partitions, and each partition is stored on a separate node in the cluster. 
+When you perform operations on the RDD, such as map, filter, reduce, etc., Spark automatically parallelizes the operation and distributes it across the nodes in the cluster, 
+where each node processes its own partition of the data.
+
+By distributing the data and processing across multiple nodes, Spark is able to perform big data processing much faster compared to processing the data on a single machine. 
+The size of the partitions and the number of nodes in the cluster determine the parallelism and scalability of Spark's processing capabilities.
+So, to summarize, RDDs are a key building block of Spark and are designed to be distributed across multiple nodes in a cluster, allowing for parallel processing and efficient big data processing.
+
  There are currently two types of RDDs: parallelized collections, which take an existing Scala collection and run functions on it in parallel, 
  and Hadoop datasets, which run functions on each record of a file in Hadoop distributed file system or any other storage system supported by Hadoop.
  Both types of RDDs can be operated on through the same methods.
