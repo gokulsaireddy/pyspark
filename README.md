@@ -14,3 +14,4 @@ Learning PySpark
 - Pandas with Pyspark
 - Spark Fundamentals
 - Spark Persistence [link](https://spark.apache.org/docs/0.9.0/scala-programming-guide.html#resilient-distributed-datasets-rdds)
+- Spark Session (2.* version) vs Spark context (1.* version) [link](https://www.ksolves.com/blog/big-data/spark/sparksession-vs-sparkcontext-what-are-the-differences)
