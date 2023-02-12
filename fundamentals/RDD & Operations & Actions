@@ -1,0 +1,49 @@
+ Resilient distributed dataset (RDD), which is a fault-tolerant collection of elements that can be operated on in parallel. 
+ There are currently two types of RDDs: parallelized collections, which take an existing Scala collection and run functions on it in parallel, 
+ and Hadoop datasets, which run functions on each record of a file in Hadoop distributed file system or any other storage system supported by Hadoop.
+ Both types of RDDs can be operated on through the same methods.
+ 
+ 1 -------
+ 
+ Parallelized collections are created by calling SparkContext’s parallelize method on an existing Scala collection (a Seq object). 
+ The elements of the collection are copied to form a distributed dataset that can be operated on in parallel.
+ Once created, the distributed dataset (distData here) can be operated on in parallel. For example, we might call distData.reduce(_ + _) to add up the elements of the array.
+
+One important parameter for parallel collections is the number of slices to cut the dataset into. Spark will run one task for each slice of the cluster.
+Typically you want 2-4 slices for each CPU in your cluster. Normally, Spark tries to set the number of slices automatically based on your cluster. 
+However, you can also set it manually by passing it as a second parameter to parallelize (e.g. sc.parallelize(data, 10)).
+
+
+2 --------
+
+Spark can create distributed datasets from any file stored in the Hadoop distributed file system (HDFS) or other storage systems
+supported by Hadoop (including your local file system, Amazon S3, Hypertable, HBase, etc).
+Spark supports text files, SequenceFiles, and any other Hadoop InputFormat.
+
+
+
+------------------------------------------------------     Operations & Actions  --------------------------------------------------
+
+RDDs support two types of operations: transformations, which create a new dataset from an existing one, and actions, which return a value to the driver program after running a computation on the dataset. 
+For example, map is a transformation that passes each dataset element through a function and returns a new distributed dataset representing the results. On the other hand, reduce is an action that aggregates 
+all the elements of the dataset using some function and returns the final result to the driver program (although there is also a parallel reduceByKey that returns a distributed dataset).
+
+All transformations in Spark are lazy, in that they do not compute their results right away. Instead, they just remember the transformations applied to some base dataset (e.g. a file).
+The transformations are only computed when an action requires a result to be returned to the driver program. This design enables Spark to run more efficiently
+– for example, we can realize that a dataset created through map will be used in a reduce and return only the result of the reduce to the driver, rather than the larger mapped dataset.
+
+By default, each transformed RDD is recomputed each time you run an action on it. However, you may also persist an RDD in memory using the persist (or cache) method, in which case Spark will keep the elements around on the cluster for much faster access the next time you query it. 
+There is also support for persisting datasets on disk, or replicated across the cluster
+
+
+
+
+
+
+
+
+
+
+
+
+
