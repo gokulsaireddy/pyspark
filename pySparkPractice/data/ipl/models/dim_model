@@ -1,0 +1,109 @@
+                                                    Dim_Date:
+                                                    -DateID
+                                                    -DayOfWeek
+                                                    -DayOfMonth
+                                                    -Month
+                                                    -Year
+
+                                                    Dim_Age:
+                                                    -AgeID
+                                                    -AgeYears
+                                                    -AgeMonths
+                                                    -AgeDay
+
+Dim_Player:
+-PlayerID (Primary Key)
+-Name
+-Born (DateID)
+-PlaceID
+-AgeID
+-National Side (CountryID)
+-Batting Style
+-Bowling Style
+
+                        Dim_Team:
+                        -TeamID (Primary Key)
+                        -Team
+                        -HomeGround (PlaceID)
+
+                        Dim_Venue:                  Dim_Place:
+                        -VenueID (Primary Key)      -PlaceID
+                        -Venue                      -City
+                        -PlaceID                    -State
+                                                    -CountryID
+
+                                                    Dim_Country
+                                                    -CountryID
+                                                    -Country
+                                                    -Continent
+
+                        Dim_Umpire:
+                        -UmpireID (Primary Key)
+                        -Name
+
+Fact_Innings:
+-PlayerID (Foreign Key referencing Dim_Player)
+-InningsID
+-InningsNumber (1/2)
+-OverNumber
+-BallNumber
+-Batter (Foreign Key referencing Dim_Player)
+-Bowler (Foreign Key referencing Dim_Player)
+-Non-Striker (Foreign Key referencing Dim_Player)
+-Extra_Type
+-Batsman_Run
+-Extras_Run
+-Total_Run
+-Non_Boundary
+-IsWicketDelivery
+-Player_Out
+-Kind
+-Fielders_Involved
+-BattingTeam (Foreign Key referencing Dim_Team)
+
+Fact_Match:
+-MatchID (PK)
+-VenueID
+-DateID
+-MatchNumber [ already given ]
+-TeamID1 (Foreign Key referencing Dim_Team)
+-TeamID2 (Foreign Key referencing Dim_Team)
+-TossWinner (TeamID) (Foreign Key referencing Dim_Team)
+-TossDecision - Bat/Bowl
+-WinningTeam (Foreign Key referencing Dim_Team)
+-WonBy  - Runs/Wickets
+-Margin - Runs/Wickets quantity
+-Player_of_Match (Foreign Key referencing Dim_Player)
+-Team1Players  (JSON)
+-Team2Players  (JSON)
+-UmpireID1 (Foreign Key referencing Dim_Umpire)
+-UmpireID2 (Foreign Key referencing Dim_Umpire)
+
+Fact_PlayerStats:
+-PlayerID (Foreign Key referencing Dim_Player)
+-MatchesPlayed
+-InningsBatted
+-NotOuts
+-RunsScored
+-HighestInnScore
+-100s
+-50s
+-4s
+-6s
+-BattingAVG
+-BattingS/R
+-CatchesTaken
+-StumpingsMade
+-Ducks
+-R/O
+-InningsBowled
+-Overs
+-Maidens
+-RunsConceded
+-Wickets
+-Best
+-3s
+-5s
+-BowlingAVG
+-EconomyRate
+-BowlingS/R

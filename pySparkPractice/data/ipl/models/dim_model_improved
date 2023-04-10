@@ -1,0 +1,160 @@
+                                                    Dim_Date:
+                                                    -DateID
+                                                    -DayOfWeek
+                                                    -DayOfMonth
+                                                    -Month
+                                                    -Year
+
+
+Dim_Player:
+-PlayerID (Primary Key)
+-Name
+-Born (DateID)
+-PlaceID
+-AgeYears
+-AgeMonths
+-AgeDay
+-National Side (CountryID)
+-Batting Style
+-Bowling Style
+
+                        Dim_Team:
+                        -TeamID (Primary Key)
+                        -Team
+                        -HomeGround (VenueID)
+
+                        Dim_Venue:
+                        -VenueID (Primary Key)
+                        -Venue
+                        -City
+                        -State
+                        -CountryID
+                                                    Dim_Country
+                                                    -CountryID
+                                                    -Country
+                                                    -Continent
+
+                        Dim_Umpire:
+                        -UmpireID (Primary Key)
+                        -Name
+Dim_MatchPlayerBridge:
+-MatchID (Foreign Key referencing Fact_Match)
+-TeamID (Foreign Key referencing Dim_Team)
+-PlayerID (Foreign Key referencing Dim_Player)
+
+--------------------------------
+
+Fact_Innings:
+-InningsID
+-InningsNumber (1/2)
+-OverNumber
+-BallNumber
+-BatterID (Foreign Key referencing Dim_Player)
+-BowlerID (Foreign Key referencing Dim_Player)
+-Non-StrikerID (Foreign Key referencing Dim_Player)
+-Extra_Type
+-Batsman_Run
+-Extras_Run
+-Total_Run
+-Non_Boundary
+-IsWicketDelivery
+-Player_Out
+-Kind
+-Fielders_Involved
+-BattingTeam (Foreign Key referencing Dim_Team)
+
+Fact_Match:
+-MatchID (PK)
+-VenueID
+-DateID
+-MatchNumber [ already given ]
+-TeamID1 (Foreign Key referencing Dim_Team)
+-TeamID2 (Foreign Key referencing Dim_Team)
+-TossWinner (TeamID) (Foreign Key referencing Dim_Team)
+-TossDecision - Bat/Bowl
+-WinningTeam (Foreign Key referencing Dim_Team)
+-WonBy  - Runs/Wickets
+-Margin - Runs/Wickets quantity
+-Player_of_Match (Foreign Key referencing Dim_Player)
+-Team1Players  (JSON)
+-Team2Players  (JSON)
+-UmpireID1 (Foreign Key referencing Dim_Umpire)
+-UmpireID2 (Foreign Key referencing Dim_Umpire)
+
+
+
+Fact_PlayerStats:
+-PlayerID (Foreign Key referencing Dim_Player)
+-MatchesPlayed
+-InningsBatted
+-NotOuts
+-RunsScored
+-HighestInnScore
+-100s
+-50s
+-4s
+-6s
+-BattingAVG
+-BattingS/R
+-CatchesTaken
+-StumpingsMade
+-Ducks
+-R/O
+-InningsBowled
+-Overs
+-Maidens
+-RunsConceded
+-Wickets
+-Best
+-3s
+-5s
+-BowlingAVG
+-EconomyRate
+-BowlingS/R
+
+-----------------
+
+Player Performance Analysis:
+    1. you can calculate a player's batting average or bowling average in different venues AND home matches vs. away matches
+    2. Performance in Different Positions -- difficult
+    3. you can calculate a player's strike rate or wickets taken in the death/powerplay overs to understand their impact in those situations.
+    4. you can calculate a player's batting average or bowling average against each opponent team to identify if they perform better against certain teams and struggle against others
+    5. you can track batting averages, strike rates, or bowling averages of players over multiple seasons or years to understand their performance trajectory.
+
+Match analysis:
+    1. Over wise graphs with runs, wickets of a match
+    2. You can analyze partnership dynamics, run rates during partnerships
+    3. Wickets taken, runs conceded, bowling economy rate, bowling strike rate, etc.,
+       can provide insights into the effectiveness of bowlers in a match.
+       You can identify the most successful bowlers, key wicket-takers, and bowlers who performed well under pressure.
+    4. run rate required, runs scored in powerplays, runs scored in death overs, etc.,
+       can provide insights into the performance of teams and players in different match situations
+
+Team Performance Analysis:
+    1.You can calculate metrics such as total matches played, total matches won, winning percentage, margin of victory/defeat,
+      etc. to evaluate the performance of different teams.
+    2. such as total runs scored, average runs per innings, strike rate, number of centuries
+    3. such as total wickets taken, bowling average, bowling strike rate, economy rate
+    4. Opposition Analysis
+    5. Powerplay and Death overs analysis
+
+Venue Analysis:
+    1.You can calculate metrics such as total matches played at each venue, average runs scored/bowled, average winning margin,
+    2. Number of sixes, fours, wickets.
+    3. Home advantage, avg 1st innings score
+    4. Toss vs Match result
+
+Player Age Analysis:
+    1.You can calculate metrics such as average age, maximum and minimum age, age distribution by batting/bowling style, etc.
+
+Team Composition Analysis:
+    1.You can calculate metrics such as percentage of matches played by different players,
+      number of matches played by players in different positions, etc.
+
+Wicket Analysis:
+    1.You can calculate metrics such as wickets taken, best bowling figures, fielding performance by player,
+      etc. to evaluate the performance of bowlers and fielders.
+
+Time Series Analysis:
+    1.You can calculate metrics such as total matches played by month/year, average runs scored/bowled by month/year,
+      etc. to gain insights into the seasonality and trends in the data.
